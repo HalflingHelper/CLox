@@ -6,33 +6,27 @@
 
 typedef enum {
     OP_CONSTANT,
+    OP_NIL,
+    OP_TRUE,
+    OP_FALSE,
+    OP_EQUAL,
+    OP_GREATER,
+    OP_LESS,
     OP_ADD,
     OP_SUBTRACT,
     OP_MULTIPLY,
     OP_DIVIDE,
+    OP_NOT,
     OP_NEGATE,
     OP_RETURN,
 } OpCode;
-
-
-// Dynamic Array to hold line numbers using Run-Length Encoding
-typedef struct {
-    int count;
-    int capacity;
-    int* lines;
-    uint8_t* frequency;
-} LineTracker;
-
-void initLineTracker(LineTracker* tracker);
-void freeLineTracker(LineTracker* tracker);
-void addLine(LineTracker* tracker, int line);
 
 // The chunk struct
 typedef struct {
     int count;
     int capacity;
     uint8_t* code;
-    LineTracker lines;
+    int* lines;
     ValueArray constants;
 } Chunk;
 
