@@ -174,7 +174,7 @@ static void number() {
 }
 
 static void string() {
-    emiitConstant(OBJ_VAL(copyString(parser.previous.start + 1, 
+    emitConstant(OBJ_VAL(copyString(parser.previous.start + 1, 
                                      parser.previous.length - 2)));
 }
 
