@@ -18,10 +18,13 @@ static Obj* allocateObject(size_t size, ObjType type) {
     return object;
 }
 
-static ObjString* allocateString(char* chars, int length) {
-    ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
+static ObjString* allocateString(char chars[], int length) {
+    ObjString* string = (ObjString*) allocateObject(sizeof(ObjString) + sizeof(char)*length + 1, OBJ_STRING);
     string->length = length;
-    string->chars = chars;
+
+    for (size_t i = 0; i <= length; i++)
+        string->chars[i] = chars[i];
+
     return string;
 }
 
