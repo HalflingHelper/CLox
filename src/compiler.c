@@ -268,8 +268,21 @@ static void string(bool canAssign) {
                                      parser.previous.length - 2)));
 }
 
+// Checks if the identifier already exists before assigning a new one
+uint8_t getExistingIdentifierConstant(Token* name) {
+    ValueArray constants = currentChunk()->constants;
+    for (uint8_t i = 0; i < constants.count; i++) {
+        if(AS_STRING(constants.values[i]) == copyString(name->start, name->length)) {
+            return i;
+        }
+    }
+    // Unreachable
+    return 0;
+}
+
+// This is for variables that can already exist
 static void namedVariable(Token name, bool canAssign) {
-    uint8_t arg = identifierConstant(&name);
+    uint8_t arg = getExistingIdentifierConstant(&name);
 
     if (canAssign && match(TOKEN_EQUAL)) {
         expression();
