@@ -518,7 +518,6 @@ static void namedVariable(Token name, bool canAssign) {
         getOp = OP_GET_GLOBAL;
         setOp = OP_SET_GLOBAL;
     }
-    uint8_t arg = identifierConstant(&name);
 
     if (canAssign && match(TOKEN_EQUAL)) {
         expression();
