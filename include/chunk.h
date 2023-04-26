@@ -24,6 +24,8 @@ typedef enum {
     OP_DEFINE_GLOBAL,
     OP_GET_GLOBAL,
     OP_SET_GLOBAL,
+    OP_GET_UPVALUE,
+    OP_SET_UPVALUE,
     OP_PRINT,
     OP_JUMP,
     OP_JUMP_IF_FALSE,
