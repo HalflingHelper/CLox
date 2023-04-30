@@ -3,6 +3,14 @@ fun outer() {
   fun inner() {
     print x;
   }
-  inner();
+
+  return inner;
 }
-outer();
+
+fun outer2() {
+  var x = "t";
+  var y = 7;
+}
+
+var closure = outer();
+closure();
