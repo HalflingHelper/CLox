@@ -428,6 +428,7 @@ static InterpretResult run()
             pop();
             break;
         case OP_RETURN:
+        {
             Value result = pop();
             closeUpvalues(frame->slots);
             vm.frameCount--;
@@ -442,8 +443,11 @@ static InterpretResult run()
             frame = &vm.frames[vm.frameCount - 1];
             break;
         }
+        case OP_CLASS:
+            push(OBJ_VAL(newClass(READ_STRING())));
+            break;
+        }
     }
-
 #undef READ_BYTE
 #undef READ_SHORT
 #undef READ_CONSTANT
